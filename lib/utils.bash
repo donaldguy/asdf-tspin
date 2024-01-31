@@ -35,32 +35,31 @@ list_all_versions() {
 
 # borrowed from: https://github.com/ggilmore/asdf-just/blob/9e8e82cb232b231675873c0157aa4141e9fbe012/lib/utils.bash#L37
 get_platform() {
-    local platform
+	local platform
 
-    platform="$(uname)"
-    arch="$(uname -m)"
-    case $platform in
-    'Linux')
-        platform='unknown-linux-musl'
-        arch='x86_64' # TODO: needs to support arm64 and armv7 builds
-        ;;
-    'Darwin')
-        platform='apple-darwin'
-        case $arch in
-        'arm64')
-            arch='aarch64'
-            ;;
-        *)
-            arch='x86_64'
-            ;;
-        esac
-        ;;
-    *) ;;
-    esac
+	platform="$(uname)"
+	arch="$(uname -m)"
+	case $platform in
+	'Linux')
+		platform='unknown-linux-musl'
+		arch='x86_64' # TODO: needs to support arm64 and armv7 builds
+		;;
+	'Darwin')
+		platform='apple-darwin'
+		case $arch in
+		'arm64')
+			arch='aarch64'
+			;;
+		*)
+			arch='x86_64'
+			;;
+		esac
+		;;
+	*) ;;
+	esac
 
-    echo "${arch}-${platform}"
+	echo "${arch}-${platform}"
 }
-
 
 download_release() {
 	local version filename url
